@@ -1,0 +1,315 @@
+.section {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  background: transparent;
+  color: var(--color-on-surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.shell {
+  width: 100%;
+  padding: 72px 16px 0px 0px;
+}
+
+.face {
+  width: min(1040px, calc(100vw - 32px));
+  margin: 0 auto;
+  position: relative;
+  aspect-ratio: 1040 / 600;
+}
+
+.panel {
+  position: absolute;
+  width: 40%;
+  height: 20%;
+  display: block;
+  z-index: 10;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  color: inherit;
+  text-decoration: none;
+  transition: opacity 300ms ease, transform 300ms ease;
+  cursor: pointer;
+}
+
+.panel:hover .description {
+  transform: translateY(-2px);
+}
+
+.designer {
+  left: 0;
+}
+
+.coder {
+  right: 0;
+  text-align: right;
+}
+
+.description {
+  position: absolute;
+  top: 180px;
+  width: 290px;
+  transition: opacity 300ms ease, transform 300ms ease;
+  text-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+.designer .description {
+  left: 0;
+}
+
+.coder .description {
+  right: 0;
+}
+
+.description h1 {
+  margin: 0 0 18px;
+  color: var(--color-on-surface);
+  font-weight: 700;
+  font-size: clamp(2rem, 4.5vw, 4.2rem);
+  line-height: 0.95;
+  letter-spacing: -0.08em;
+  text-transform: lowercase;
+}
+
+.description p {
+  margin: 0;
+  color: var(--color-on-surface-variant);
+  font-size: clamp(1rem, 1.8vw, 1.8rem);
+  line-height: 1.4;
+  max-width: 290px;
+}
+
+.chevronLeft,
+.chevronRight {
+  line-height: 1;
+}
+
+.chevronLeft {
+  padding: 0 0.1em 0 0;
+  color: var(--color-primary);
+}
+
+.chevronRight {
+  padding: 0 0 0 0.14em;
+  color: var(--color-primary);
+}
+
+.imageContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  mask-image: radial-gradient(ellipse 65% 75% at 50% 50%, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 80%);
+  -webkit-mask-image: radial-gradient(ellipse 65% 75% at 50% 50%, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 80%);
+}
+
+.faceImage {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+  user-select: none;
+}
+
+.designerImg,
+.coderImg,
+.designerBg,
+.coderBg {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .panel {
+    width: 30%;
+    height: 44%;
+  }
+
+  .description h1 {
+    font-size: clamp(3rem, 6vw, 4.5rem);
+  }
+
+  .description p {
+    display: block;
+  }
+}
+
+@media (min-width: 900px) {
+  .panel {
+    width: 32%;
+  }
+
+  .description h1 {
+    font-size: clamp(3.5rem, 5vw, 4.8rem);
+  }
+}
+
+@media (min-width: 1024px) {
+  .panel {
+    width: 30%;
+  }
+
+  .description h1 {
+    font-size: clamp(3.5rem, 4.5vw, 4.2rem);
+  }
+
+  .description p {
+    font-size: clamp(1.05rem, 1.1vw, 1.8rem);
+    line-height: 1.4;
+  }
+}
+
+@media (min-width: 1140px) {
+  .section {
+    align-items: center;
+  }
+
+  .shell {
+    /* padding: 56px 0 44px; */
+  }
+
+  .face {
+    width: 1040px;
+    height: 600px;
+    aspect-ratio: auto;
+  }
+
+  .panel {
+    width: 520px;
+    height: 600px;
+    top: 0;
+  }
+
+  .description {
+    top: 180px;
+    width: 290px;
+  }
+
+  .designer .description {
+    left: 0;
+  }
+
+  .coder .description {
+    right: 0;
+  }
+
+  .coder {
+    text-align: left;
+    right: 0;
+  }
+
+  .designer {
+    left: 0;
+  }
+
+  .description h1 {
+    font-size: 4.2rem;
+  }
+
+  .imageContainer {
+    position: absolute;
+    width: 1040px;
+    height: 600px;
+    top: 0;
+    left: 0;
+  }
+
+  .faceImage {
+    display: none;
+  }
+
+  .designerImg,
+  .coderImg {
+    width: 420px;
+    height: 600px;
+    position: absolute;
+    top: 0;
+    background: url(/legacy/sprite-home.png) 0 0 no-repeat;
+    display: block;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .designerImg {
+    background-position: 0px -600px;
+    left: 100px;
+  }
+
+  .coderImg {
+    background-position: 100% 0px;
+    right: 100px;
+  }
+
+  .designerBg,
+  .coderBg {
+    width: 420px;
+    height: 200px;
+    position: absolute;
+    bottom: 0px;
+    background: url(/legacy/sprite-home.png) 0 -1300px no-repeat;
+    display: block;
+    pointer-events: none;
+  }
+
+  .designerBg {
+    left: 100px;
+  }
+
+  .coderBg {
+    right: 100px;
+    background-position: 100% -1300px;
+  }
+}
+
+@media (max-width: 1139px) {
+  .face {
+    aspect-ratio: auto;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 1fr;
+    padding: 18px 0 0;
+  }
+
+  .panel {
+    position: static;
+    width: 100%;
+    height: auto;
+    top: auto;
+    bottom: auto;
+    margin: 0;
+  }
+
+  .designer,
+  .coder {
+    text-align: left;
+  }
+
+  .description {
+    position: static;
+    width: auto;
+    max-width: 40rem;
+  }
+
+  .description h1 {
+    margin-bottom: 12px;
+  }
+
+  .imageContainer {
+    order: 2;
+    width: min(100%, 760px);
+    justify-self: center;
+  }
+
+  .designer {
+    order: 1;
+  }
+
+  .coder {
+    order: 3;
+  }
+}

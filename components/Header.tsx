@@ -19,7 +19,7 @@ export default function Header({ onOpenContact }: HeaderProps) {
           <div className="flex items-center gap-3">
             <Terminal className="text-primary w-6 h-6" />
             {/* <span className="text-xl font-black tracking-tighter text-white uppercase font-headline">RAHUL.DEV</span> */}
-            <Image src="/logo.svg" alt="Logo" width={50} height={50} /> 
+            <Image src="/R_logo_bw_black_transparent.svg" alt="Logo" width={42} height={42} className="h-10 w-10 invert brightness-0" /> 
           </div>
           <nav className="hidden md:flex gap-8 items-center font-headline">
             <a className="text-primary font-bold hover:text-primary/80 transition-colors duration-300" href="#hero">Hero</a>
@@ -57,7 +57,7 @@ export default function Header({ onOpenContact }: HeaderProps) {
             initial={{ opacity: 0, x: "100%" }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
-            className="fixed inset-0 z-[60] bg-surface flex flex-col p-8 md:hidden"
+            className="fixed inset-0 z-60 bg-surface flex flex-col p-8 md:hidden"
           >
             <div className="flex justify-between items-center mb-12">
               <div className="flex items-center gap-3">

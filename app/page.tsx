@@ -37,7 +37,7 @@ export default function App() {
       <Header onOpenContact={openContact} />
 
       <main>
-        <Hero onOpenContact={openContact} />
+        <Hero />
         <About />
         <Skills />
         <Experience />
