@@ -4,6 +4,9 @@ import './globals.css';
 export const metadata: Metadata = {
   title: 'Rahul.Dev',
   description: 'Full-Stack Architect Portfolio',
+  icons: {
+    icon: '/R_logo_bw_dark_bg.svg',
+  },
 };
 
 export default function RootLayout({
@@ -13,9 +16,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-      </head>
       <body suppressHydrationWarning>{children}</body>
     </html>
   );

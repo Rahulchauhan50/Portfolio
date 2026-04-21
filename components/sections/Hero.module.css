@@ -11,7 +11,7 @@
 
 .shell {
   width: 100%;
-  padding: 72px 16px 0px 0px;
+  padding: 32px 16px 0px 0px;
 }
 
 .face {
@@ -205,7 +205,7 @@
   }
 
   .shell {
-    /* padding: 56px 0 44px; */
+  padding: 72px 16px 0px 0px;
   }
 
   .face {
@@ -226,7 +226,7 @@
   }
 
   .designer .description {
-    left: 0;
+    left: -80px;
   }
 
   .coder .description {
@@ -266,8 +266,9 @@
 
 @media (max-width: 1139px) {
   .section {
-    padding-top: 40px;
+    padding-top: 80px;
     align-items: flex-start;
+    justify-content: flex-start;
   }
 
   .face {
@@ -301,11 +302,17 @@
   }
 
   .description h1 {
-    margin-bottom: 16px;
     justify-content: center;
     display: flex;
     align-items: center;
     flex-wrap: wrap;
+    margin-bottom: 16px;
+  }
+
+  .description p {
+    margin: 0 auto;
+    max-width: 100%;
+    text-align: center;
   }
 
   .imageScaleWrapper {

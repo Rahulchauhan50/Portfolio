@@ -9,7 +9,7 @@ export default function Hero() {
   const faceRef = useRef<HTMLDivElement>(null);
   const scaleWrapperRef = useRef<HTMLDivElement>(null);
   const imageContainerRef = useRef<HTMLDivElement>(null);
-  
+
   const designerImgRef = useRef<HTMLDivElement>(null);
   const coderImgRef = useRef<HTMLDivElement>(null);
   const designerBgRef = useRef<HTMLDivElement>(null);
@@ -42,9 +42,9 @@ export default function Hero() {
 
     // Convert pixel scroll to a normalized 0-1 progress span, completing around 350px down
     const progress = Math.min(1, Math.max(0, latest / 350));
-    
+
     // Start xp precisely in the middle (520) so the initial image split is exactly 50/50
-    const xp = 520 + progress * 320; 
+    const xp = 520 + progress * 320;
 
     // Apply exact same mathematics as desktop scaling width
     if (designerImgRef.current) {
@@ -63,7 +63,7 @@ export default function Hero() {
       coderBgRef.current.style.right = `${100 + (xp - 520) * 0.05}px`;
       coderBgRef.current.style.opacity = `${xp / 520}`;
     }
-    
+
     // Animate text descriptions
     if (designerDescRef.current) {
       designerDescRef.current.style.opacity = `${(1040 - xp) / 520}`;
@@ -131,7 +131,7 @@ export default function Hero() {
     section.addEventListener("mouseenter", handleMouseEnter);
     section.addEventListener("mousemove", handleMouseMove);
     section.addEventListener("mouseleave", handleMouseLeave);
-    
+
     loop = requestAnimationFrame(animate);
 
     return () => {
@@ -153,7 +153,10 @@ export default function Hero() {
         <div className={styles.face} id="face" ref={faceRef}>
           <div className={`${styles.panel} ${styles.designer}`} aria-label="Go to projects">
             <div className={styles.description} id="designer-desc" ref={designerDescRef}>
-              <h1>automation</h1>
+              <h1>
+                <span className={styles.chevronLeft}>&#123;</span>automation
+                <span className={styles.chevronRight}>&#125;</span>
+                </h1>
               <p>Creating automation and AI-driven workflows for real-world applications.</p>
             </div>
           </div>
