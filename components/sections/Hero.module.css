@@ -267,12 +267,18 @@
 }
 
 @media (max-width: 1139px) {
+  .section {
+    padding-top: 40px;
+    align-items: flex-start;
+  }
+
   .face {
     aspect-ratio: auto;
-    display: grid;
-    gap: 20px;
-    grid-template-columns: 1fr;
-    padding: 18px 0 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    padding: 0 16px 80px;
   }
 
   .panel {
@@ -286,27 +292,34 @@
 
   .designer,
   .coder {
-    text-align: left;
+    text-align: center;
   }
 
   .description {
     position: static;
-    width: auto;
-    max-width: 40rem;
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
   }
 
   .description h1 {
-    margin-bottom: 12px;
+    margin-bottom: 16px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
   }
 
   .imageContainer {
-    order: 2;
-    width: min(100%, 760px);
-    justify-self: center;
+    order: 1;
+    width: min(100%, 460px);
+    margin: 0 auto;
+    mask-image: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 1) 35%, rgba(0, 0, 0, 0) 75%);
+    -webkit-mask-image: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 1) 35%, rgba(0, 0, 0, 0) 75%);
   }
 
   .designer {
-    order: 1;
+    order: 2;
   }
 
   .coder {

@@ -119,7 +119,7 @@ export default function Hero() {
 
           <div className={styles.imageContainer}>
             <Image
-              src="/legacy/adham-dannaway-designer-coder.jpg"
+              src="/legacy/mobile.png"
               alt="Adham Dannaway UI designer"
               width={1040}
               height={600}
