@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Header from "@/components/Header";
+import Preloader from "@/components/Preloader";
 import Footer from "@/components/Footer";
 import Hero from "@/components/sections/Hero";
 import About from "@/components/sections/About";
@@ -24,6 +25,7 @@ export default function App() {
 
   return (
     <div className="bg-surface min-h-screen text-on-surface selection:bg-primary/30 selection:text-white overflow-x-clip font-body">
+      <Preloader />
       {/* Dynamic Background */}
       <div className="fixed inset-0 pointer-events-none -z-10">
         <div className="absolute top-0 right-0 w-125 h-125 bg-primary/10 blur-[120px] rounded-full translate-x-1/2 -translate-y-1/2"></div>

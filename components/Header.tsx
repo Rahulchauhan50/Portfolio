@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Terminal, Menu, X, Mail, Github, Linkedin } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
+import Image from "next/image";
 
 interface HeaderProps {
   onOpenContact: () => void;
@@ -17,7 +18,8 @@ export default function Header({ onOpenContact }: HeaderProps) {
         <div className="flex justify-between items-center px-6 py-4 max-w-7xl mx-auto">
           <div className="flex items-center gap-3">
             <Terminal className="text-primary w-6 h-6" />
-            <span className="text-xl font-black tracking-tighter text-white uppercase font-headline">RAHUL.DEV</span>
+            {/* <span className="text-xl font-black tracking-tighter text-white uppercase font-headline">RAHUL.DEV</span> */}
+            <Image src="/logo.svg" alt="Logo" width={50} height={50} /> 
           </div>
           <nav className="hidden md:flex gap-8 items-center font-headline">
             <a className="text-primary font-bold hover:text-primary/80 transition-colors duration-300" href="#hero">Hero</a>

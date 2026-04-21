@@ -79,10 +79,11 @@
 }
 
 @layer utilities {
+
   .glass,
   .glass-card,
   .glass-heavy,
-  .glass-chip,
+  .glass-ccchip,
   .glass-input {
     border: 1px solid rgba(255, 255, 255, 0.12);
     box-shadow:
@@ -181,6 +182,7 @@
 }
 
 @keyframes float {
+
   0%,
   100% {
     transform: translate3d(0, 0, 0);
@@ -192,6 +194,7 @@
 }
 
 @keyframes pulse-glow {
+
   0%,
   100% {
     opacity: 0.48;
