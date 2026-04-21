@@ -118,10 +118,45 @@
 }
 
 .designerImg,
-.coderImg,
+.coderImg {
+  width: 420px;
+  height: 600px;
+  position: absolute;
+  top: 0;
+  background: url(/legacy/sprite-home.png) 0 0 no-repeat;
+  display: block;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.designerImg {
+  background-position: 0px -600px;
+  left: 100px;
+}
+
+.coderImg {
+  background-position: 100% 0px;
+  right: 100px;
+}
+
 .designerBg,
 .coderBg {
-  display: none;
+  width: 420px;
+  height: 200px;
+  position: absolute;
+  bottom: 0px;
+  background: url(/legacy/sprite-home.png) 0 -1300px no-repeat;
+  display: block;
+  pointer-events: none;
+}
+
+.designerBg {
+  left: 100px;
+}
+
+.coderBg {
+  right: 100px;
+  background-position: 100% -1300px;
 }
 
 @media (min-width: 768px) {
@@ -223,43 +258,6 @@
     display: none;
   }
 
-  .designerImg,
-  .coderImg {
-    width: 420px;
-    height: 600px;
-    position: absolute;
-    top: 0;
-    background: url(/legacy/sprite-home.png) 0 0 no-repeat;
-    display: block;
-    z-index: 1;
-    pointer-events: none;
-  }
-
-  .designerImg {
-    background-position: 0px -600px;
-    left: 100px;
-  }
-
-  .coderImg {
-    background-position: 100% 0px;
-    right: 100px;
-  }
-
-  .designerBg,
-  .coderBg {
-    width: 420px;
-    height: 200px;
-    position: absolute;
-    bottom: 0px;
-    background: url(/legacy/sprite-home.png) 0 -1300px no-repeat;
-    display: block;
-    pointer-events: none;
-  }
-
-  .designerBg {
-    left: 100px;
-  }
-
   .coderBg {
     right: 100px;
     background-position: 100% -1300px;
@@ -310,16 +308,27 @@
     flex-wrap: wrap;
   }
 
-  .imageContainer {
-    order: 1;
-    width: min(100%, 460px);
+  .imageScaleWrapper {
+    width: min(100%, 460px); 
+    aspect-ratio: 1; /* Height matches the customized W/600 zoomed height */
+    position: relative;
+    overflow: hidden;
     margin: 0 auto;
-    mask-image: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 1) 35%, rgba(0, 0, 0, 0) 75%);
-    -webkit-mask-image: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 1) 35%, rgba(0, 0, 0, 0) 75%);
+    order: 2;
+  }
+
+  .imageContainer {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    margin-left: -520px;
+    width: 1040px !important;
+    height: 600px !important;
+    transform-origin: top center;
   }
 
   .designer {
-    order: 2;
+    order: 1;
   }
 
   .coder {

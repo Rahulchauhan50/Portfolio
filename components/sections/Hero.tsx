@@ -1,13 +1,14 @@
 "use client";
 
-import { motion } from "motion/react";
-import Image from "next/image";
+import { motion, useScroll, useMotionValueEvent } from "motion/react";
 import { useEffect, useRef } from "react";
 import styles from "./Hero.module.css";
 
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
   const faceRef = useRef<HTMLDivElement>(null);
+  const scaleWrapperRef = useRef<HTMLDivElement>(null);
+  const imageContainerRef = useRef<HTMLDivElement>(null);
   
   const designerImgRef = useRef<HTMLDivElement>(null);
   const coderImgRef = useRef<HTMLDivElement>(null);
@@ -16,8 +17,65 @@ export default function Hero() {
   const designerDescRef = useRef<HTMLDivElement>(null);
   const coderDescRef = useRef<HTMLDivElement>(null);
 
+  // Responsive scaling to fit mobile DOM wrapper exactly, with 600px zoom
   useEffect(() => {
-    // Only animate for large desktop browsers to match original logic
+    const handleResize = () => {
+      if (window.innerWidth < 1140 && scaleWrapperRef.current && imageContainerRef.current) {
+        // We divide by 600 instead of 1040 to make the scale mathematically 1.7x larger.
+        // This zooms into the central part of the sprite, making faces massive and bold on mobile.
+        const scale = scaleWrapperRef.current.clientWidth / 600;
+        imageContainerRef.current.style.transform = `scale(${scale})`;
+      } else if (imageContainerRef.current) {
+        imageContainerRef.current.style.transform = 'none';
+      }
+    };
+    handleResize(); // Init on mount
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Framer Motion scroll hook (absolute pixels are often more dependable)
+  const { scrollY } = useScroll();
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    if (window.innerWidth >= 1140) return; // Desktop uses requestAnimationFrame hover logic
+
+    // Convert pixel scroll to a normalized 0-1 progress span, completing around 350px down
+    const progress = Math.min(1, Math.max(0, latest / 350));
+    
+    // Start xp precisely in the middle (520) so the initial image split is exactly 50/50
+    const xp = 520 + progress * 320; 
+
+    // Apply exact same mathematics as desktop scaling width
+    if (designerImgRef.current) {
+      designerImgRef.current.style.width = `${420 + (520 - xp) * 0.5}px`;
+      designerImgRef.current.style.left = `${100 + (520 - xp) * 0.1}px`;
+    }
+    if (coderImgRef.current) {
+      coderImgRef.current.style.width = `${420 + (xp - 520) * 0.5}px`;
+      coderImgRef.current.style.right = `${100 - (520 - xp) * 0.1}px`;
+    }
+    if (designerBgRef.current) {
+      designerBgRef.current.style.left = `${100 + (520 - xp) * 0.05}px`;
+      designerBgRef.current.style.opacity = `${(1040 - xp) / 520}`;
+    }
+    if (coderBgRef.current) {
+      coderBgRef.current.style.right = `${100 + (xp - 520) * 0.05}px`;
+      coderBgRef.current.style.opacity = `${xp / 520}`;
+    }
+    
+    // Animate text descriptions
+    if (designerDescRef.current) {
+      designerDescRef.current.style.opacity = `${(1040 - xp) / 520}`;
+      designerDescRef.current.style.transform = `translateY(${progress * 20}px)`;
+    }
+    if (coderDescRef.current) {
+      coderDescRef.current.style.opacity = `${xp / 520}`;
+      coderDescRef.current.style.transform = `translateY(${-20 + progress * 20}px)`;
+    }
+  });
+
+  useEffect(() => {
     if (window.innerWidth < 1140) return;
 
     const section = sectionRef.current;
@@ -39,7 +97,6 @@ export default function Hero() {
     };
 
     const animate = () => {
-      // zeno's paradox dampens the movement
       xp += ((isHovering ? relMouseX : targetXp) - xp) / 12;
 
       if (designerImgRef.current) {
@@ -68,14 +125,8 @@ export default function Hero() {
       loop = requestAnimationFrame(animate);
     };
 
-    const handleMouseEnter = () => {
-      isHovering = true;
-    };
-
-    const handleMouseLeave = () => {
-      isHovering = false;
-      targetXp = 520; // reset target
-    };
+    const handleMouseEnter = () => isHovering = true;
+    const handleMouseLeave = () => { isHovering = false; targetXp = 520; };
 
     section.addEventListener("mouseenter", handleMouseEnter);
     section.addEventListener("mousemove", handleMouseMove);
@@ -107,6 +158,15 @@ export default function Hero() {
             </div>
           </div>
 
+          <div className={styles.imageScaleWrapper} ref={scaleWrapperRef}>
+            <div className={styles.imageContainer} ref={imageContainerRef}>
+              <div className={styles.designerImg} aria-hidden="true" ref={designerImgRef} />
+              <div className={styles.coderImg} aria-hidden="true" ref={coderImgRef} />
+              <div className={styles.designerBg} aria-hidden="true" ref={designerBgRef} />
+              <div className={styles.coderBg} aria-hidden="true" ref={coderBgRef} />
+            </div>
+          </div>
+
           <div className={`${styles.panel} ${styles.coder}`} aria-label="Go to about section">
             <div className={styles.description} id="coder-desc" ref={coderDescRef}>
               <h1>
@@ -115,22 +175,6 @@ export default function Hero() {
               </h1>
               <p>Full-stack developer building automation systems and real-world web apps using React and Next.js.</p>
             </div>
-          </div>
-
-          <div className={styles.imageContainer}>
-            <Image
-              src="/legacy/mobile.png"
-              alt="Adham Dannaway UI designer"
-              width={1040}
-              height={600}
-              priority
-              className={styles.faceImage}
-            />
-
-            <div className={styles.designerImg} aria-hidden="true" ref={designerImgRef} />
-            <div className={styles.coderImg} aria-hidden="true" ref={coderImgRef} />
-            <div className={styles.designerBg} aria-hidden="true" ref={designerBgRef} />
-            <div className={styles.coderBg} aria-hidden="true" ref={coderBgRef} />
           </div>
         </div>
       </motion.div>
