@@ -35,7 +35,7 @@ export default function ProjectsPage() {
               key={project.id}
               className="group relative overflow-hidden rounded-2xl border border-outline-variant/20 bg-surface-container-high shadow-[0_20px_80px_rgba(2,8,23,0.28)]"
             >
-              <div className="aspect-16/11 overflow-hidden">
+              <div className="aspect-square overflow-hidden">
                 <img
                   src={project.image}
                   alt={project.title}

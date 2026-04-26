@@ -13,12 +13,20 @@ import ProjectModal from "@/components/ProjectModal";
 import { Project } from "@/lib/data";
 
 export default function App() {
-  const [isPageReady, setIsPageReady] = useState(false);
+  const [isPageReady, setIsPageReady] = useState(() => {
+    if (typeof window === "undefined") return false;
+    return sessionStorage.getItem("portfolio-preloader-seen") === "1";
+  });
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+
+  const handlePreloaderComplete = () => {
+    sessionStorage.setItem("portfolio-preloader-seen", "1");
+    setIsPageReady(true);
+  };
 
   return (
     <>
-      {!isPageReady && <Preloader onComplete={() => setIsPageReady(true)} />}
+      {!isPageReady && <Preloader onComplete={handlePreloaderComplete} />}
 
       {isPageReady && (
         <main>
