@@ -13,7 +13,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
   if (!project) return null;
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8">
+    <div className="fixed inset-0 z-100 flex items-center justify-center p-4 md:p-8">
       <motion.div 
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -23,7 +23,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
       <motion.div 
         initial={{ opacity: 0, scale: 0.9, y: 20 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
-        className="relative w-full max-w-4xl bg-surface-container-high rounded-2xl overflow-hidden border border-outline-variant/20 shadow-2xl max-h-[90vh] overflow-y-auto"
+        className="project-modal-scrollbar relative w-full max-w-6xl bg-surface-container-high rounded-2xl overflow-hidden border border-outline-variant/20 shadow-2xl max-h-[90vh] overflow-y-auto"
       >
         <button 
           onClick={onClose}

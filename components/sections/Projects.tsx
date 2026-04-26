@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
+import Link from "next/link";
 import { ExternalLink, ArrowUpRight } from "lucide-react";
 import { projects, Project } from "@/lib/data";
 
@@ -47,15 +48,24 @@ export default function Projects({ onSelectProject }: ProjectsProps) {
               A collection of high-impact projects ranging from AI automation to enterprise infrastructure.
             </p>
           </div>
-          <motion.span
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3 }}
-            className="text-[10px] font-label font-bold uppercase tracking-[0.2em] text-on-surface-variant border border-outline-variant/30 px-3 py-1.5 rounded-full glass-chip shrink-0"
-          >
-            {projects.length} Projects
-          </motion.span>
+          <div className="flex flex-col items-start md:items-end gap-3 shrink-0">
+            <motion.span
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+              className="text-[10px] font-label font-bold uppercase tracking-[0.2em] text-on-surface-variant border border-outline-variant/30 px-3 py-1.5 rounded-full glass-chip"
+            >
+              {projects.length} Projects
+            </motion.span>
+            <Link
+              href="/projects"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/30 bg-surface-container-high/60 text-sm font-bold text-primary hover:bg-primary/10 hover:border-primary/50 transition-all duration-300"
+            >
+              View All
+              <ArrowUpRight className="w-4 h-4" />
+            </Link>
+          </div>
         </motion.div>
 
         {/* Bento Grid */}
@@ -91,7 +101,7 @@ export default function Projects({ onSelectProject }: ProjectsProps) {
                     referrerPolicy="no-referrer"
                   />
                   {/* Dark overlay base */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#040c18]/95 via-[#040c18]/50 to-[#040c18]/20" />
+                  <div className="absolute inset-0 bg-linear-to-t from-[#040c18]/95 via-[#040c18]/50 to-[#040c18]/20" />
                   {/* Hover overlay */}
                   <div
                     className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"

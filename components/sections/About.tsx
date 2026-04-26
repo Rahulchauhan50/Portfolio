@@ -29,14 +29,14 @@ export default function About() {
               variants={slideIn("right", "tween", 0.2, 1)}
               className='xl:flex-1 xl:h-auto md:h-[550px] h-[350px]'
             > */}
-              {/* <EarthCanvas /> */}
+            {/* <EarthCanvas /> */}
             {/* </motion.div> */}
 
-            
-     
-      
-        <EarthCanvas />
-       
+
+
+
+            <EarthCanvas />
+
 
           </div>
         </motion.div>
@@ -49,35 +49,35 @@ export default function About() {
           <h2 className="text-3xl sm:text-5xl md:text-6xl font-headline font-bold text-white tracking-tighter">Crafting Robust <br /><span className="text-tertiary">Digital Experiences.</span></h2>
           <div className="space-y-4 md:space-y-6 text-on-surface-variant text-base md:text-lg leading-relaxed font-body">
             <p>
-              I specialize in the delicate balance between high-performance backends and pixel-perfect frontends. With a core focus on the Next.js ecosystem, I build applications that aren't just functional, but architecturally sound.
+              Full-stack developer specializing in Next.js and the MERN stack. Build applications that are as architecturally sound under the hood as they are visually engaging on the screen.
             </p>
             <p>
-              My passion lies at the intersection of AI/ML integration and streamlined automation. Whether it's migrating legacy systems to modern stacks or engineering complex IT asset management platforms, I prioritize scalability and user-centric design.
-            </p>
+              My work focuses on complex system design and AI-driven workflows. Whether engineering large-scale fleet management systems or modernizing legacy systems, I deliver fast, scalable, and production-ready software.
+              </p>
           </div>
-           <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-4">
             <div className="p-4 md:p-6 flex gap-3 rounded-lg bg-surface-container-highest/30 border border-outline-variant/10">
               <span className="text-2xl md:text-3xl font-headline font-bold text-primary">3+</span>
               <p className="text-[10px] md:text-xs uppercase tracking-widest text-on-surface-variant mt-2">Years Experience</p>
             </div>
-           <div className="">
-            <a
-              href="/resume.pdf"
-              download="Rahul_Chauhan_Resume.pdf"
-              className="inline-flex h-full items-center gap-3 px-6 md:px-8 py-3 md:py-4 rounded-md border border-primary/30 font-bold text-primary hover:bg-primary/10 transition-all duration-300 group text-sm md:text-base"
-            >
-              <FileDown className="w-5 h-5 group-hover:-translate-y-1 transition-transform" />
-              Download Resume
-            </a>
+            <div className="">
+              <a
+                href="/resume.pdf"
+                download="Rahul_Chauhan_Resume.pdf"
+                className="inline-flex h-full items-center gap-3 px-6 md:px-8 py-3 md:py-4 rounded-md border border-primary/30 font-bold text-primary hover:bg-primary/10 transition-all duration-300 group text-sm md:text-base"
+              >
+                <FileDown className="w-5 h-5 group-hover:-translate-y-1 transition-transform" />
+                Download Resume
+              </a>
+            </div>
           </div>
-          </div>
-          
+
 
         </motion.div>
-         <motion.div  >
-         
+        <motion.div  >
+
         </motion.div>
-        
+
       </div>
     </section>
   );

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import SiteShell from '@/components/SiteShell';
 
 export const metadata: Metadata = {
   title: 'Rahul.Dev',
@@ -16,7 +17,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body suppressHydrationWarning>{children}</body>
+      <body suppressHydrationWarning>
+        <SiteShell>{children}</SiteShell>
+      </body>
     </html>
   );
 }
