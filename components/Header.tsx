@@ -4,6 +4,8 @@ import { useState } from "react";
 import { Terminal, Menu, X, Mail, Github, Linkedin } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 interface HeaderProps {
   onOpenContact: () => void;
@@ -11,21 +13,24 @@ interface HeaderProps {
 
 export default function Header({ onOpenContact }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
+
+  const sectionHref = (id: string) => (pathname === "/" ? `#${id}` : `/#${id}`);
 
   return (
     <>
       <header className="bg-zinc-950/40 backdrop-blur-xl fixed top-0 w-full z-50 shadow-[0_4px_30px_rgba(0,111,240,0.04)]">
         <div className="flex justify-between items-center px-6 py-4 max-w-7xl mx-auto">
-          <div className="flex items-center gap-3">
+          <Link href="/" className="flex items-center gap-3" aria-label="Go to home">
             <Terminal className="text-primary w-6 h-6" />
             {/* <span className="text-xl font-black tracking-tighter text-white uppercase font-headline">RAHUL.DEV</span> */}
             <Image src="/R_logo_bw_black_transparent.svg" alt="Logo" width={42} height={42} className="h-10 w-10 invert brightness-0" /> 
-          </div>
+          </Link>
           <nav className="hidden md:flex gap-8 items-center font-headline">
-            <a className="text-primary font-bold hover:text-primary/80 transition-colors duration-300" href="#hero">Hero</a>
-            <a className="text-on-surface-variant hover:text-primary transition-colors duration-300" href="#about">About</a>
-            <a className="text-on-surface-variant hover:text-primary transition-colors duration-300" href="#skills">Skills</a>
-            <a className="text-on-surface-variant hover:text-primary transition-colors duration-300" href="#projects">Projects</a>
+            <Link className="text-on-surface-variant hover:text-primary transition-colors duration-300" href={sectionHref("about")}>About</Link>
+            <Link className="text-on-surface-variant hover:text-primary transition-colors duration-300" href={sectionHref("skills")}>Skills</Link>
+            <Link className="text-on-surface-variant hover:text-primary transition-colors duration-300" href={sectionHref("experience")}>Experience</Link>
+            <Link className="text-on-surface-variant hover:text-primary transition-colors duration-300" href={sectionHref("projects")}>Projects</Link>
             <div className="h-4 w-px bg-outline-variant/30 mx-2"></div>
             <div className="flex gap-4 items-center">
               <a className="text-on-surface-variant hover:text-primary transition-colors" href="https://github.com/Rahulchauhan50" target="_blank" rel="noopener noreferrer">
@@ -69,10 +74,10 @@ export default function Header({ onOpenContact }: HeaderProps) {
               </button>
             </div>
             <nav className="flex flex-col gap-8 text-3xl font-headline font-bold text-white mb-12">
-              <a onClick={() => setIsMenuOpen(false)} href="#hero">Hero</a>
-              <a onClick={() => setIsMenuOpen(false)} href="#about">About</a>
-              <a onClick={() => setIsMenuOpen(false)} href="#skills">Skills</a>
-              <a onClick={() => setIsMenuOpen(false)} href="#projects">Projects</a>
+              <Link onClick={() => setIsMenuOpen(false)} href={sectionHref("about")}>About</Link>
+              <Link onClick={() => setIsMenuOpen(false)} href={sectionHref("skills")}>Skills</Link>
+              <Link onClick={() => setIsMenuOpen(false)} href={sectionHref("experience")}>Experience</Link>
+              <Link onClick={() => setIsMenuOpen(false)} href={sectionHref("projects")}>Projects</Link>
               <button 
                 onClick={() => { setIsMenuOpen(false); onOpenContact(); }} 
                 className="text-left text-primary"
