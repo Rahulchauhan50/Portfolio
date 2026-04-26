@@ -14,7 +14,11 @@ const greetings = [
   "안녕하세요"
 ];
 
-export default function Preloader() {
+type PreloaderProps = {
+  onComplete?: () => void;
+};
+
+export default function Preloader({ onComplete }: PreloaderProps) {
   const [index, setIndex] = useState(0);
   const [isFadingOut, setIsFadingOut] = useState(false);
   const [isUnmounted, setIsUnmounted] = useState(false);
@@ -42,6 +46,7 @@ export default function Preloader() {
     const unmountTimeout = setTimeout(() => {
       setIsUnmounted(true);
       document.body.style.overflow = "auto";
+      onComplete?.();
     }, 2500);
 
     return () => {
@@ -50,7 +55,7 @@ export default function Preloader() {
       clearTimeout(fadeOutTimeout);
       clearTimeout(unmountTimeout);
     };
-  }, []);
+  }, [onComplete]);
 
   if (isUnmounted) return null;
 

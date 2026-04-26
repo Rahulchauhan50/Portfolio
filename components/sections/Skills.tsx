@@ -59,7 +59,7 @@ export default function Skills() {
     <section className="py-24 md:py-32 px-6 md:px-24" id="skills">
       <div className="max-w-7xl mx-auto space-y-12 md:space-y-16">
         <div className="text-center md:text-left">
-          <h2 className="text-3xl sm:text-5xl md:text-6xl font-headline font-bold text-white tracking-tighter">Technical <span className="text-primary">Arsenal.</span></h2>
+          <h2 className="text-3xl sm:text-5xl md:text-6xl font-headline font-bold text-white tracking-tighter">Technical <span className="text-primary">Stack</span></h2>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Frontend */}

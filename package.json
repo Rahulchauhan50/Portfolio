@@ -11,6 +11,8 @@
   "dependencies": {
     "@google/genai": "^1.29.0",
     "@openai/codex": "^0.118.0",
+    "@react-three/drei": "^10.7.7",
+    "@react-three/fiber": "^9.6.0",
     "@types/nodemailer": "^8.0.0",
     "dotenv": "^17.2.3",
     "express": "^4.21.2",

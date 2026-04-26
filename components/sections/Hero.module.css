@@ -34,6 +34,7 @@
   text-decoration: none;
   transition: opacity 300ms ease, transform 300ms ease;
   cursor: pointer;
+  opacity: 0;
 }
 
 .panel:hover .description {
@@ -127,6 +128,7 @@
   display: block;
   z-index: 1;
   pointer-events: none;
+  opacity: 0;
 }
 
 .designerImg {
@@ -148,6 +150,7 @@
   background: url(/legacy/sprite-home.png) 0 -1300px no-repeat;
   display: block;
   pointer-events: none;
+  opacity: 0;
 }
 
 .designerBg {
@@ -212,6 +215,8 @@
     width: 1040px;
     height: 600px;
     aspect-ratio: auto;
+    /* mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 82%, rgba(0, 0, 0, 0) 100%);
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 82%, rgba(0, 0, 0, 0) 100%); */
   }
 
   .panel {
