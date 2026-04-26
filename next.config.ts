@@ -4,6 +4,21 @@ const nextConfig: NextConfig = {
   env: {
     GEMINI_API_KEY: process.env.GEMINI_API_KEY || '',
   },
+  async redirects() {
+    return [
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'www.rahulcodes.tech',
+          },
+        ],
+        destination: 'https://rahulcodes.tech/:path*',
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     return [
       {

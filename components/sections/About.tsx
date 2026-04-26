@@ -62,7 +62,7 @@ export default function About() {
             </div>
             <div className="">
               <a
-                href="/resume.pdf"
+                href="/Rahul_Chauhan_Resume.pdf"
                 download="Rahul_Chauhan_Resume.pdf"
                 className="inline-flex h-full items-center gap-3 px-6 md:px-8 py-3 md:py-4 rounded-md border border-primary/30 font-bold text-primary hover:bg-primary/10 transition-all duration-300 group text-sm md:text-base"
               >

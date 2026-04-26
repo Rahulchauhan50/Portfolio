@@ -52,7 +52,12 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: '/R_logo_bw_dark_bg.svg',
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/R_logo_bw_dark_bg.svg', type: 'image/svg+xml' },
+    ],
+    shortcut: '/favicon.svg',
+    apple: '/R_logo_bw_dark_bg.svg',
   },
 };
 
@@ -62,7 +67,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   const personId = `${siteUrl}/#person`;
+  const organizationId = `${siteUrl}/#organization`;
   const websiteId = `${siteUrl}/#website`;
+  const logoUrl = `${siteUrl}/R_logo_bw_dark_bg.svg`;
 
   const structuredData = {
     '@context': 'https://schema.org',
@@ -96,6 +103,23 @@ export default function RootLayout({
         description:
           'Portfolio website showcasing full-stack projects in automation, AI workflows, and web application development.',
         publisher: {
+          '@id': organizationId,
+        },
+      },
+      {
+        '@type': 'Organization',
+        '@id': organizationId,
+        name: 'Rahul Codes',
+        url: siteUrl,
+        logo: {
+          '@type': 'ImageObject',
+          url: logoUrl,
+        },
+        sameAs: [
+          'https://github.com/Rahulchauhan50',
+          'https://www.linkedin.com/in/rahulchauhan50/',
+        ],
+        founder: {
           '@id': personId,
         },
       },
