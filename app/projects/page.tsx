@@ -1,8 +1,29 @@
-"use client";
-
+import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { projects } from "@/lib/data";
+
+export const metadata: Metadata = {
+  title: "Projects",
+  description:
+    "Browse all projects by Rahul Chauhan, including AI automation systems, enterprise applications, and modern full-stack builds.",
+  alternates: {
+    canonical: "/projects",
+  },
+  openGraph: {
+    title: "Projects | Rahul Chauhan",
+    description:
+      "Browse all projects by Rahul Chauhan, including AI automation systems, enterprise applications, and modern full-stack builds.",
+    url: "/projects",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Projects | Rahul Chauhan",
+    description:
+      "Browse all projects by Rahul Chauhan, including AI automation systems, enterprise applications, and modern full-stack builds.",
+  },
+};
 
 export default function ProjectsPage() {
   return (

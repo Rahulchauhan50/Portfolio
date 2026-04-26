@@ -8,11 +8,11 @@ export default function Education() {
     <section className="py-24 md:py-32 px-6 md:px-24 relative" id="education">
       <div className="max-w-7xl mx-auto grid lg:grid-cols-3 gap-12 md:gap-16">
         <div className="lg:col-span-1">
-          <h2 className="text-3xl sm:text-5xl md:text-6xl font-headline font-bold text-white tracking-tighter lg:sticky lg:top-32">Academic <br/><span className="text-primary">Foundations.</span></h2>
+          <h2 className="text-3xl sm:text-5xl md:text-6xl font-headline font-bold text-white tracking-tighter lg:sticky lg:top-32">Academic <br /><span className="text-primary">Foundations.</span></h2>
         </div>
         <div className="lg:col-span-2 space-y-6 md:space-y-8">
           {/* BCA */}
-          <motion.div 
+          <motion.div
             whileInView={{ opacity: 1, x: 0 }}
             initial={{ opacity: 0, x: 20 }}
             viewport={{ once: true }}
@@ -27,7 +27,7 @@ export default function Education() {
                   <h4 className="text-xl md:text-2xl font-bold text-white group-hover:text-primary transition-colors">Bachelor of Computer Application (BCA)</h4>
                   <p className="text-primary font-medium text-sm md:text-base">IGNOU (Indira Gandhi National Open University)</p>
                   <p className="text-on-surface-variant text-xs md:text-sm leading-relaxed max-w-xl">
-                    I am pursuing Bachelor of Computer Application from Indira Gandhi National Open University. I am currently in my final year of graduation.
+                    Graduated with a Bachelor of Computer Applications (BCA), securing a 6.7 CGPA. Degree that laid the groundwork for my transition into engineering complex, full-stack systems.
                   </p>
                 </div>
               </div>
@@ -36,7 +36,7 @@ export default function Education() {
           </motion.div>
 
           {/* Diploma */}
-          <motion.div 
+          <motion.div
             whileInView={{ opacity: 1, x: 0 }}
             initial={{ opacity: 0, x: 20 }}
             viewport={{ once: true }}
@@ -61,7 +61,7 @@ export default function Education() {
           </motion.div>
 
           {/* 12th */}
-          <motion.div 
+          <motion.div
             whileInView={{ opacity: 1, x: 0 }}
             initial={{ opacity: 0, x: 20 }}
             viewport={{ once: true }}
@@ -86,7 +86,7 @@ export default function Education() {
           </motion.div>
 
           {/* 10th */}
-          <motion.div 
+          <motion.div
             whileInView={{ opacity: 1, x: 0 }}
             initial={{ opacity: 0, x: 20 }}
             viewport={{ once: true }}
