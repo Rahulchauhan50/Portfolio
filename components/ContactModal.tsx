@@ -13,7 +13,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
   const [loadingStates, setLoadingStates] = useState({ submitForm: false });
   const [formStatus, setFormStatus] = useState<"idle" | "success">("idle");
 
-  const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleFormSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const data = Object.fromEntries(formData.entries());
@@ -21,15 +21,32 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
     setLoadingStates({ submitForm: true });
     console.log("Form Data Submitted:", data);
 
-    setTimeout(() => {
-      setLoadingStates({ submitForm: false });
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+      console.log("API Response:", result);
+
+      if (!response.ok) {
+        throw new Error(result.error || "Failed to send message");
+      }
+
       setFormStatus("success");
       (e.target as HTMLFormElement).reset();
       setTimeout(() => {
         setFormStatus("idle");
         onClose();
       }, 2000);
-    }, 1500);
+    } catch (error) {
+      console.error("Submission error:", error);
+      alert(`Error: ${error instanceof Error ? error.message : "Failed to send message"}`);
+    } finally {
+      setLoadingStates({ submitForm: false });
+    }
   };
 
   return (

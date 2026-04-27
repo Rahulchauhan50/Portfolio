@@ -17,16 +17,27 @@ function getTransporter() {
   const user = process.env.GMAIL_USER;
   const pass = process.env.GMAIL_PASS;
 
+  console.log("[getTransporter] Checking credentials...");
+  console.log("[getTransporter] GMAIL_USER exists:", !!user);
+  console.log("[getTransporter] GMAIL_PASS exists:", !!pass);
+
   if (!user || !pass) {
-    throw new Error(
+    const error = new Error(
       "Missing GMAIL_USER or GMAIL_PASS environment variables. " +
-      "Create a .env.local file in the project root with these values."
+      "Create a .env.local file in the project root with these values. " +
+      "For Gmail, use an App Password (not your regular password). " +
+      "See: https://myaccount.google.com/apppasswords"
     );
+    console.error("[getTransporter]", error.message);
+    throw error;
   }
 
   return nodemailer.createTransport({
     service: "gmail",
-    auth: { user, pass },
+    auth: { 
+      user, 
+      pass 
+    },
   });
 }
 
@@ -42,49 +53,59 @@ function adminEmailHtml({ name, email, message }: ContactPayload) {
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>New Contact Form Submission</title>
 </head>
-<body style="margin:0;padding:0;background:#06111e;font-family:'Segoe UI',Arial,sans-serif;color:#eff6ff;">
-  <table width="100%" cellpadding="0" cellspacing="0" style="max-width:600px;margin:32px auto;">
+<body style="margin:0;padding:0;background:#f8fafb;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sans-serif;color:#1a202c;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="max-width:600px;margin:40px auto;padding:0 16px;">
     <tr>
-      <td style="background:linear-gradient(135deg,#0f1b2d,#13243a);border:1px solid rgba(125,211,252,0.18);border-radius:16px;padding:40px 36px;">
+      <td style="background:#ffffff;border:1px solid #e2e8f0;border-radius:12px;padding:48px 40px;box-shadow:0 1px 3px rgba(0,0,0,0.08);">
         <!-- Header -->
-        <p style="margin:0 0 4px;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#7dd3fc;font-weight:700;">
-          Portfolio Contact
+        <p style="margin:0 0 8px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#0f766e;font-weight:600;">
+          New Message
         </p>
-        <h1 style="margin:0 0 28px;font-size:26px;font-weight:800;color:#ffffff;line-height:1.2;">
-          📬 New message from <span style="color:#7dd3fc;">${name}</span>
+        <h1 style="margin:0 0 32px;font-size:28px;font-weight:700;color:#1a202c;line-height:1.2;">
+          📬 Message from ${name}
         </h1>
 
         <!-- Info rows -->
-        <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:24px;">
+        <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:32px;">
           <tr>
-            <td style="padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.06);">
-              <span style="font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:#a8b6cb;font-weight:700;">Name</span><br/>
-              <span style="font-size:15px;color:#fff;font-weight:600;">${name}</span>
+            <td style="padding:0 0 16px;border-bottom:1px solid #e2e8f0;">
+              <span style="font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#718096;font-weight:600;display:block;margin-bottom:4px;">Sender Name</span>
+              <span style="font-size:16px;color:#1a202c;font-weight:600;">${name}</span>
             </td>
           </tr>
           <tr>
-            <td style="padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.06);">
-              <span style="font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:#a8b6cb;font-weight:700;">Email</span><br/>
-              <a href="mailto:${email}" style="font-size:15px;color:#7dd3fc;font-weight:600;text-decoration:none;">${email}</a>
+            <td style="padding:16px 0;border-bottom:1px solid #e2e8f0;">
+              <span style="font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#718096;font-weight:600;display:block;margin-bottom:4px;">Reply To</span>
+              <a href="mailto:${email}" style="font-size:16px;color:#0ea5e9;font-weight:600;text-decoration:none;word-break:break-all;">${email}</a>
             </td>
           </tr>
           <tr>
-            <td style="padding:12px 0;">
-              <span style="font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:#a8b6cb;font-weight:700;">Message</span><br/>
-              <p style="margin:8px 0 0;font-size:15px;color:#eff6ff;line-height:1.65;white-space:pre-wrap;">${message}</p>
+            <td style="padding:16px 0;">
+              <span style="font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#718096;font-weight:600;display:block;margin-bottom:8px;">Message</span>
+              <div style="background:#f7fafc;border-left:3px solid #0ea5e9;padding:16px;border-radius:4px;font-size:15px;color:#2d3748;line-height:1.7;white-space:pre-wrap;word-wrap:break-word;">${message}</div>
             </td>
           </tr>
         </table>
 
         <!-- CTA -->
-        <a href="mailto:${email}?subject=Re: Your message" 
-           style="display:inline-block;margin-top:8px;padding:12px 28px;background:linear-gradient(135deg,rgba(125,211,252,0.96),rgba(37,99,235,0.92));color:#04111d;font-weight:700;font-size:13px;letter-spacing:.12em;text-transform:uppercase;border-radius:8px;text-decoration:none;">
-          Reply to ${name}
-        </a>
+        <table cellpadding="0" cellspacing="0" style="margin-top:32px;">
+          <tr>
+            <td>
+              <a href="mailto:${email}?subject=Re: Your message" 
+                 style="display:inline-block;padding:12px 32px;background:#0ea5e9;color:#ffffff;font-weight:600;font-size:14px;letter-spacing:.02em;border-radius:8px;text-decoration:none;">
+                Reply to ${name}
+              </a>
+            </td>
+          </tr>
+        </table>
+
+        <!-- Divider -->
+        <hr style="border:none;border-top:1px solid #e2e8f0;margin:32px 0;" />
 
         <!-- Footer -->
-        <p style="margin:32px 0 0;font-size:11px;color:#a8b6cb;">
-          Sent from your portfolio contact form · ${new Date().toUTCString()}
+        <p style="margin:0;font-size:12px;color:#718096;line-height:1.6;">
+          <strong>Received:</strong> ${new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' })} <br/>
+          <strong>From:</strong> Portfolio Contact Form
         </p>
       </td>
     </tr>
@@ -102,50 +123,66 @@ function userEmailHtml({ name }: Pick<ContactPayload, "name">) {
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Got your message!</title>
 </head>
-<body style="margin:0;padding:0;background:#06111e;font-family:'Segoe UI',Arial,sans-serif;color:#eff6ff;">
-  <table width="100%" cellpadding="0" cellspacing="0" style="max-width:600px;margin:32px auto;">
+<body style="margin:0;padding:0;background:#f8fafb;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sans-serif;color:#1a202c;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="max-width:600px;margin:40px auto;padding:0 16px;">
     <tr>
-      <td style="background:linear-gradient(135deg,#0f1b2d,#13243a);border:1px solid rgba(125,211,252,0.18);border-radius:16px;padding:40px 36px;">
-        <!-- Header -->
-        <p style="margin:0 0 4px;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#7dd3fc;font-weight:700;">
-          RAHUL.DEV
+      <td style="background:#ffffff;border:1px solid #e2e8f0;border-radius:12px;padding:48px 40px;box-shadow:0 1px 3px rgba(0,0,0,0.08);">
+        <!-- Logo/Branding -->
+        <p style="margin:0 0 24px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#0f766e;font-weight:700;">
+          Rahul Chauhan
         </p>
-        <h1 style="margin:0 0 16px;font-size:26px;font-weight:800;color:#ffffff;line-height:1.2;">
-          Hey ${name}, message received! 🚀
+
+        <!-- Main heading -->
+        <h1 style="margin:0 0 24px;font-size:32px;font-weight:700;color:#1a202c;line-height:1.2;">
+          Thanks for reaching out! 🚀
         </h1>
-        <p style="margin:0 0 28px;font-size:15px;color:#a8b6cb;line-height:1.7;">
-          Thanks for reaching out through my portfolio. I've received your message and will get back to you typically within <strong style="color:#7dd3fc;">24–48 hours</strong>.
+
+        <!-- Body content -->
+        <p style="margin:0 0 20px;font-size:15px;color:#4a5568;line-height:1.8;">
+          Hi ${name},
+        </p>
+        
+        <p style="margin:0 0 24px;font-size:15px;color:#4a5568;line-height:1.8;">
+          I've received your message and appreciate you taking the time to connect. I typically respond within <strong style="color:#1a202c;">24–48 hours</strong>, so expect to hear back from me soon.
         </p>
 
-        <!-- Divider -->
-        <hr style="border:none;border-top:1px solid rgba(255,255,255,0.08);margin:0 0 28px;" />
-
-        <p style="margin:0 0 8px;font-size:13px;color:#a8b6cb;line-height:1.6;">
-          In the meantime, feel free to explore my work or connect with me on LinkedIn.
+        <p style="margin:0 0 32px;font-size:15px;color:#4a5568;line-height:1.8;">
+          In the meantime, feel free to explore my recent work or connect with me on social media below.
         </p>
 
-        <!-- Social links -->
-        <table cellpadding="0" cellspacing="0" style="margin-top:20px;">
+        <!-- CTA Buttons -->
+        <table cellpadding="0" cellspacing="0" style="margin-bottom:32px;">
           <tr>
-            <td style="padding-right:12px;">
-              <a href="https://github.com/rahulc0dy" 
-                 style="display:inline-block;padding:10px 18px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);color:#fff;font-size:12px;font-weight:600;border-radius:8px;text-decoration:none;">
-                GitHub
+            <td style="padding-right:12px;padding-bottom:12px;">
+              <a href="https://github.com/Rahulchauhan50" 
+                 style="display:inline-block;padding:12px 28px;background:#f0f4f8;border:1px solid #cbd5e0;color:#2d3748;font-size:14px;font-weight:600;border-radius:8px;text-decoration:none;transition:all 0.2s ease;">
+                → GitHub
               </a>
             </td>
-            <td>
-              <a href="https://linkedin.com/in/rahulchauhan" 
-                 style="display:inline-block;padding:10px 18px;background:rgba(125,211,252,0.12);border:1px solid rgba(125,211,252,0.22);color:#7dd3fc;font-size:12px;font-weight:600;border-radius:8px;text-decoration:none;">
-                LinkedIn
+            <td style="padding-bottom:12px;">
+              <a href="https://www.linkedin.com/in/rahulchauhan50" 
+                 style="display:inline-block;padding:12px 28px;background:#0ea5e9;color:#ffffff;font-size:14px;font-weight:600;border-radius:8px;text-decoration:none;">
+                → LinkedIn
               </a>
             </td>
           </tr>
         </table>
 
+        <!-- Divider -->
+        <hr style="border:none;border-top:1px solid #e2e8f0;margin:32px 0;" />
+
+        <!-- Signature -->
+        <p style="margin:0 0 12px;font-size:16px;color:#1a202c;font-weight:600;">
+          Rahul Chauhan
+        </p>
+        <p style="margin:0 0 24px;font-size:14px;color:#718096;">
+          Product Designer & Developer<br/>
+          <a href="https://rahulcodes.tech" style="color:#0ea5e9;text-decoration:none;">rahulcodes.tech</a>
+        </p>
+
         <!-- Footer -->
-        <p style="margin:36px 0 0;font-size:11px;color:#a8b6cb;">
-          You're receiving this because you filled out the contact form on rahul.dev.<br/>
-          If this wasn't you, you can safely ignore this email.
+        <p style="margin:0;font-size:12px;color:#a0aec0;line-height:1.6;">
+          You received this email because you filled out the contact form on my portfolio. If this wasn't you, you can safely ignore this message.
         </p>
       </td>
     </tr>
@@ -206,9 +243,20 @@ export async function POST(req: NextRequest) {
       { status: 200 }
     );
   } catch (error) {
-    console.error("[/api/contact] Error:", error);
+    console.error("[/api/contact] Error type:", error instanceof Error ? error.constructor.name : typeof error);
+    console.error("[/api/contact] Error message:", error instanceof Error ? error.message : String(error));
+    console.error("[/api/contact] Full error:", error);
+
+    // More specific error message
+    let userMessage = "Failed to send email. Please try again later.";
+    if (error instanceof Error && error.message.includes("GMAIL_USER")) {
+      userMessage = "Email service not configured. Contact administrator.";
+    } else if (error instanceof Error && error.message.includes("Invalid login")) {
+      userMessage = "Email service authentication failed. Check your credentials.";
+    }
+
     return NextResponse.json(
-      { error: "Failed to send email. Please try again later." },
+      { error: userMessage, debug: error instanceof Error ? error.message : String(error) },
       { status: 500 }
     );
   }

@@ -9,6 +9,16 @@ export type Project = {
 };
 
 export const projects: Project[] = [
+  
+  {
+    id: 2,
+    title: "IT Asset Management",
+    year: "2025",
+    shortDesc: "Comprehensive enterprise solution for tracking hardware lifecycle and license deployments.",
+    longDesc: "A robust MERN-stack application designed for large-scale IT operations. It tracks the entire lifecycle of hardware assets from procurement to retirement. Features include automated inventory reconciliation, license tracking, and detailed reporting. It handles 500+ endpoints with real-time updates via WebSockets, ensuring IT teams have an accurate view of their infrastructure at all times.",
+    tech: ["MERN Stack", "Redux", "MongoDB", "Express", "Node.js", "WebSockets"],
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuD8OhUVQOQjY1MYZQgP3BWf2o_jooAAsvCpsADMixf0cGLzLBxK1zcycQveRenMgUhTcczDg19TQ0FOBFTAaMBxSgnXGA0rFmDUZ1gZwJ0vdIwlYsRPrlbNIjvWWsIInCf1_v910uXK2PFpOs8MN6wI-QjUKQqtduX_Ol-Ko66EeoR_yJFlbMo39RX97Enpf8-8cMaFHRpWuTOi9E7Kmh5slEH_eokmQIoBi5nvkeYVVBLAx_yFEvDt3z1yHd4xi5Xde3qo9X1AOb0"
+  },
   {
     id: 1,
     title: "AI-Assisted Email Triage",
@@ -17,15 +27,6 @@ export const projects: Project[] = [
     longDesc: "This project leverages Large Language Models (LLMs) to automate the tedious process of email management. It uses Node.js microservices to fetch emails, OpenAI's API for classification and summarization, and Prisma for persistent storage. The system significantly reduces response times and ensures critical emails are never missed. It features a dashboard for monitoring triage accuracy and manual overrides.",
     tech: ["Next.js", "OpenAI", "Prisma", "Node.js", "Tailwind CSS"],
     image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCKoHI1m5CyF6c07mapTNS6TF6kuFgPC-SswdHydDbjHeFmpqRJB7uG6qvUDXDULMWPxhHqcn-gZmDUl7AAXZSDmU7Fznmcy2W4yQdFxlMaDjSfk2EugAPZFvcRkHGWsB3UmGxR0g-dQUGtMdCh0fPzdLA6lrIv0Xj8JqQInaipl2dX_5y4HAAVAMyfjpcXD7oeRCRpxryPIDYaU6sDGQNZRu2E7bw209M6oXdVlDWs5h5GcygzoKfIrL4QtAEqWuGQCYZAhzpnphg"
-  },
-  {
-    id: 2,
-    title: "IT Asset Management",
-    year: "2023",
-    shortDesc: "Comprehensive enterprise solution for tracking hardware lifecycle and license deployments.",
-    longDesc: "A robust MERN-stack application designed for large-scale IT operations. It tracks the entire lifecycle of hardware assets from procurement to retirement. Features include automated inventory reconciliation, license tracking, and detailed reporting. It handles 500+ endpoints with real-time updates via WebSockets, ensuring IT teams have an accurate view of their infrastructure at all times.",
-    tech: ["MERN Stack", "Redux", "MongoDB", "Express", "Node.js", "WebSockets"],
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuD8OhUVQOQjY1MYZQgP3BWf2o_jooAAsvCpsADMixf0cGLzLBxK1zcycQveRenMgUhTcczDg19TQ0FOBFTAaMBxSgnXGA0rFmDUZ1gZwJ0vdIwlYsRPrlbNIjvWWsIInCf1_v910uXK2PFpOs8MN6wI-QjUKQqtduX_Ol-Ko66EeoR_yJFlbMo39RX97Enpf8-8cMaFHRpWuTOi9E7Kmh5slEH_eokmQIoBi5nvkeYVVBLAx_yFEvDt3z1yHd4xi5Xde3qo9X1AOb0"
   },
   {
     id: 3,

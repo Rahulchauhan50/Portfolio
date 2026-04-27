@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Preloader from "@/components/Preloader";
 import Hero from "@/components/sections/Hero";
 import About from "@/components/sections/About";
@@ -13,11 +13,15 @@ import ProjectModal from "@/components/ProjectModal";
 import { Project } from "@/lib/data";
 
 export default function HomePageClient() {
-  const [isPageReady, setIsPageReady] = useState(() => {
-    if (typeof window === "undefined") return false;
-    return sessionStorage.getItem("portfolio-preloader-seen") === "1";
-  });
+  const [isPageReady, setIsPageReady] = useState(false);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+
+  useEffect(() => {
+    const preloaderSeen = sessionStorage.getItem("portfolio-preloader-seen") === "1";
+    if (preloaderSeen) {
+      setIsPageReady(true);
+    }
+  }, []);
 
   const handlePreloaderComplete = () => {
     sessionStorage.setItem("portfolio-preloader-seen", "1");
