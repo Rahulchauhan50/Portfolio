@@ -93,7 +93,7 @@ export default function AMSCaseStudyPage() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="w-full aspect-[16/9] md:aspect-[21/9] mt-12 rounded-2xl border border-outline-variant/20 bg-surface-container-high shadow-[0_20px_80px_rgba(2,8,23,0.28)] overflow-hidden relative group"
+            className="w-full aspect-video md:aspect-21/9 mt-12 rounded-2xl border border-outline-variant/20 bg-surface-container-high shadow-[0_20px_80px_rgba(2,8,23,0.28)] overflow-hidden relative group"
           >
             <div className="absolute inset-0 flex items-center justify-center bg-[#040c18]/50 backdrop-blur-sm z-10">
               <p className="text-on-surface-variant font-label uppercase tracking-widest flex items-center gap-2">
