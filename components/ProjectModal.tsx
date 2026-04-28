@@ -23,7 +23,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
       <motion.div 
         initial={{ opacity: 0, scale: 0.9, y: 20 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
-        className="project-modal-scrollbar relative w-full max-w-6xl bg-surface-container-high rounded-2xl overflow-hidden border border-outline-variant/20 shadow-2xl max-h-[90vh] overflow-y-auto"
+        className="project-modal-scrollbar relative w-full max-w-7xl bg-surface-container-high rounded-2xl overflow-hidden border border-outline-variant/20 shadow-2xl max-h-[90vh] overflow-y-auto"
       >
         <button 
           onClick={onClose}
@@ -36,11 +36,11 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
             <img 
               src={project.image} 
               alt={project.title} 
-              className="w-full h-full object-cover"
+              className="w-full md:w-auto h-full object-cover"
               referrerPolicy="no-referrer"
             />
           </div>
-          <div className="p-8 md:p-12 space-y-8">
+          <div className="p-8 md:p-10 space-y-8">
             <div className="space-y-2">
               <span className="text-xs font-label text-primary font-bold uppercase tracking-widest">{project.year}</span>
               <h2 className="text-4xl font-headline font-bold text-white">{project.title}</h2>

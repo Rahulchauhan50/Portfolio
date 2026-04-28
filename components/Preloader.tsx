@@ -46,6 +46,7 @@ export default function Preloader({ onComplete }: PreloaderProps) {
     const unmountTimeout = setTimeout(() => {
       setIsUnmounted(true);
       document.body.style.overflow = "auto";
+      window.dispatchEvent(new Event("portfolio-preloader-complete"));
       onComplete?.();
     }, 2500);
 

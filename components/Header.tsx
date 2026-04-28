@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Terminal, Menu, X, Mail, Github, Linkedin } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import Image from "next/image";
@@ -15,11 +15,16 @@ export default function Header({ onOpenContact }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
 
+  useEffect(() => {
+    console.log('[Header] mounted');
+    return () => console.log('[Header] unmounted');
+  }, []);
+
   const sectionHref = (id: string) => (pathname === "/" ? `#${id}` : `/#${id}`);
 
   return (
     <>
-      <header className="bg-zinc-950/40 backdrop-blur-xl fixed top-0 w-full z-50 shadow-[0_4px_30px_rgba(0,111,240,0.04)]">
+      <header id="site-header" className="bg-zinc-950/40 backdrop-blur-xl fixed top-0 w-full z-50 shadow-[0_4px_30px_rgba(0,111,240,0.04)]">
         <div className="flex justify-between items-center px-6 py-4 max-w-7xl mx-auto">
           <Link href="/" className="flex items-center gap-3" aria-label="Go to home">
             <Terminal className="text-primary w-6 h-6" />

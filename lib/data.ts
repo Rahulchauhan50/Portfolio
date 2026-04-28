@@ -15,7 +15,7 @@ export const projects: Project[] = [
     title: "IT Asset Management",
     year: "2025",
     shortDesc: "Comprehensive enterprise solution for tracking hardware lifecycle and license deployments.",
-    longDesc: "A robust MERN-stack application designed for large-scale IT operations. It tracks the entire lifecycle of hardware assets from procurement to retirement. Features include automated inventory reconciliation, license tracking, and detailed reporting. It handles 500+ endpoints with real-time updates via WebSockets, ensuring IT teams have an accurate view of their infrastructure at all times.",
+    longDesc: "A robust MERN-stack application designed for large-scale IT operations. It tracks the entire lifecycle of hardware assets from procurement to retirement. Features include automated inventory reconciliation, license tracking, and detailed reporting. It handles 500+ endpoints with real-time updates via WebSockets,",
     tech: ["MERN Stack", "Redux", "MongoDB", "Express", "Node.js", "WebSockets"],
     image: "https://lh3.googleusercontent.com/aida-public/AB6AXuD8OhUVQOQjY1MYZQgP3BWf2o_jooAAsvCpsADMixf0cGLzLBxK1zcycQveRenMgUhTcczDg19TQ0FOBFTAaMBxSgnXGA0rFmDUZ1gZwJ0vdIwlYsRPrlbNIjvWWsIInCf1_v910uXK2PFpOs8MN6wI-QjUKQqtduX_Ol-Ko66EeoR_yJFlbMo39RX97Enpf8-8cMaFHRpWuTOi9E7Kmh5slEH_eokmQIoBi5nvkeYVVBLAx_yFEvDt3z1yHd4xi5Xde3qo9X1AOb0"
   },
