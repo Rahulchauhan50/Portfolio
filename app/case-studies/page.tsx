@@ -4,28 +4,32 @@ import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { projects } from "@/lib/data";
 
 export const metadata: Metadata = {
-  title: "Projects",
+  title: "Case Studies",
   description:
-    "Browse all projects by Rahul Chauhan, including AI automation systems, enterprise applications, and modern full-stack builds.",
+    "Browse selected case studies by Rahul Chauhan, including enterprise IT systems and backend architecture work.",
   alternates: {
-    canonical: "/projects",
+    canonical: "/case-studies",
   },
   openGraph: {
-    title: "Projects | Rahul Chauhan",
+    title: "Case Studies | Rahul Chauhan",
     description:
-      "Browse all projects by Rahul Chauhan, including AI automation systems, enterprise applications, and modern full-stack builds.",
-    url: "/projects",
+      "Browse selected case studies by Rahul Chauhan, including enterprise IT systems and backend architecture work.",
+    url: "/case-studies",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Projects | Rahul Chauhan",
+    title: "Case Studies | Rahul Chauhan",
     description:
-      "Browse all projects by Rahul Chauhan, including AI automation systems, enterprise applications, and modern full-stack builds.",
+      "Browse selected case studies by Rahul Chauhan, including enterprise IT systems and backend architecture work.",
   },
 };
 
-export default function ProjectsPage() {
+const featuredCaseStudyIds = new Set([2, 3]);
+
+export default function CaseStudiesPage() {
+  const caseStudies = projects.filter((project) => featuredCaseStudyIds.has(project.id));
+
   return (
     <main className="min-h-screen bg-surface text-on-surface px-6 md:px-24 py-24 md:py-32">
       <div className="max-w-7xl mx-auto space-y-12 md:space-y-16">
@@ -39,23 +43,24 @@ export default function ProjectsPage() {
               Back Home
             </Link>
             <h1 className="text-4xl sm:text-6xl md:text-7xl font-headline font-bold tracking-tighter text-white">
-              All <span className="text-primary">Projects.</span>
+              Case <span className="text-primary">Studies.</span>
             </h1>
             <p className="text-on-surface-variant text-base md:text-lg leading-relaxed max-w-2xl">
-              A complete list of selected works, including enterprise systems, automation tools, and product builds.
+              A focused collection of detailed case studies covering enterprise systems and backend architecture.
             </p>
           </div>
           <div className="text-[10px] font-label font-bold uppercase tracking-[0.2em] text-on-surface-variant border border-outline-variant/30 px-3 py-1.5 rounded-full glass-chip shrink-0 self-start md:self-auto">
-            {projects.length} Projects Listed
+            {caseStudies.length} Case Studies Listed
           </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 md:gap-6">
-          {projects.map((project) => (
+          {caseStudies.map((project) => (
             <article
               key={project.id}
               className="group relative overflow-hidden rounded-2xl border border-outline-variant/20 bg-surface-container-high shadow-[0_20px_80px_rgba(2,8,23,0.28)]"
             >
+              <Link href={`/${project.sluggedUrl}`} className="absolute inset-0 z-10" aria-label={`Open ${project.title} case study`} />
               <div className="aspect-square overflow-hidden">
                 <img
                   src={project.image}

@@ -35,7 +35,7 @@ export default function Header({ onOpenContact }: HeaderProps) {
             <Link className="text-on-surface-variant hover:text-primary transition-colors duration-300" href={sectionHref("about")}>About</Link>
             <Link className="text-on-surface-variant hover:text-primary transition-colors duration-300" href={sectionHref("skills")}>Skills</Link>
             <Link className="text-on-surface-variant hover:text-primary transition-colors duration-300" href={sectionHref("experience")}>Experience</Link>
-            <Link className="text-on-surface-variant hover:text-primary transition-colors duration-300" href={sectionHref("projects")}>Projects</Link>
+            <Link className="text-on-surface-variant hover:text-primary transition-colors duration-300" href={sectionHref("case-studies")}>Case Studies</Link>
             <div className="h-4 w-px bg-outline-variant/30 mx-2"></div>
             <div className="flex gap-4 items-center">
               <a className="text-on-surface-variant hover:text-primary transition-colors" href="https://github.com/Rahulchauhan50" target="_blank" rel="noopener noreferrer">
@@ -82,7 +82,7 @@ export default function Header({ onOpenContact }: HeaderProps) {
               <Link onClick={() => setIsMenuOpen(false)} href={sectionHref("about")}>About</Link>
               <Link onClick={() => setIsMenuOpen(false)} href={sectionHref("skills")}>Skills</Link>
               <Link onClick={() => setIsMenuOpen(false)} href={sectionHref("experience")}>Experience</Link>
-              <Link onClick={() => setIsMenuOpen(false)} href={sectionHref("projects")}>Projects</Link>
+              <Link onClick={() => setIsMenuOpen(false)} href={sectionHref("case-studies")}>Case Studies</Link>
               <button 
                 onClick={() => { setIsMenuOpen(false); onOpenContact(); }} 
                 className="text-left text-primary"

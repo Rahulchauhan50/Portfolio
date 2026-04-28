@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     template: '%s | Rahul Chauhan',
   },
   description:
-    'Portfolio of Rahul Chauhan, a full-stack developer focused on automation, AI workflows, and modern web applications with Next.js and React.',
+    'Portfolio of Rahul Chauhan, a full-stack developer focused on automation, AI workflows, and case studies for modern web applications with Next.js and React.',
   keywords: [
     'Rahul Chauhan',
     'Full Stack Developer',
@@ -32,13 +32,13 @@ export const metadata: Metadata = {
     siteName: 'Rahul Chauhan Portfolio',
     title: 'Rahul Chauhan | Full-Stack Developer Portfolio',
     description:
-      'Explore projects in automation, AI integrations, and full-stack web development built with modern JavaScript technologies.',
+      'Explore case studies in automation, AI integrations, and full-stack web development built with modern JavaScript technologies.',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Rahul Chauhan | Full-Stack Developer Portfolio',
     description:
-      'Explore projects in automation, AI integrations, and full-stack web development built with modern JavaScript technologies.',
+      'Explore case studies in automation, AI integrations, and full-stack web development built with modern JavaScript technologies.',
   },
   robots: {
     index: true,
@@ -101,7 +101,7 @@ export default function RootLayout({
         url: siteUrl,
         name: 'Rahul Chauhan Portfolio',
         description:
-          'Portfolio website showcasing full-stack projects in automation, AI workflows, and web application development.',
+          'Portfolio website showcasing full-stack case studies in automation, AI workflows, and web application development.',
         publisher: {
           '@id': organizationId,
         },
@@ -125,14 +125,14 @@ export default function RootLayout({
       },
       {
         '@type': 'ItemList',
-        '@id': `${siteUrl}/projects#list`,
-        name: 'Rahul Chauhan Projects',
+        '@id': `${siteUrl}/case-studies#list`,
+        name: 'Rahul Chauhan Case Studies',
         itemListElement: projects.map((project, index) => ({
           '@type': 'ListItem',
           position: index + 1,
           item: {
             '@type': ['CreativeWork', 'Project'],
-            '@id': `${siteUrl}/projects#project-${project.id}`,
+            '@id': `${siteUrl}/${project.sluggedUrl}`,
             name: project.title,
             description: project.longDesc,
             image: project.image,
@@ -140,7 +140,7 @@ export default function RootLayout({
               '@id': personId,
             },
             dateCreated: project.year,
-            url: `${siteUrl}/projects`,
+            url: `${siteUrl}/${project.sluggedUrl}`,
             keywords: project.tech.join(', '),
           },
         })),

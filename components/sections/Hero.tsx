@@ -257,7 +257,7 @@ export default function Hero() {
     <section className={styles.section} id="hero" ref={sectionRef}>
       <div className={styles.shell}>
         <div className={styles.face} id="face" ref={faceRef}>
-          <div className={`${styles.panel} ${styles.designer}`} aria-label="Go to projects" ref={designerPanelRef}>
+          <div className={`${styles.panel} ${styles.designer}`} aria-label="Go to case studies" ref={designerPanelRef}>
             <div className={styles.description} id="designer-desc" ref={designerDescRef}>
               <h1>
                 <span className={styles.chevronLeft}>&#123;</span>automation

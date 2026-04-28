@@ -3,13 +3,9 @@
 import { motion } from "motion/react";
 import Link from "next/link";
 import { ExternalLink, ArrowUpRight } from "lucide-react";
-import { projects, Project } from "@/lib/data";
+import { projects } from "@/lib/data";
 
-interface ProjectsProps {
-  onSelectProject: (project: Project) => void;
-}
-
-// Bento grid size classes — cycles through a pattern for variety
+// Bento grid size classes - cycles through a pattern for variety
 const bentoSizes = [
   "md:col-span-2 md:row-span-2", // featured
   "md:col-span-1 md:row-span-2",
@@ -28,9 +24,9 @@ const accentColors = [
   { glow: "rgba(156,197,255,0.12)", border: "rgba(156,197,255,0.18)", tag: "text-secondary" },
 ];
 
-export default function Projects({ onSelectProject }: ProjectsProps) {
+export default function Projects() {
   return (
-    <section className="py-24 md:py-32 px-6 md:px-24 overflow-hidden" id="projects">
+    <section className="py-24 md:py-32 px-6 md:px-24 overflow-hidden" id="case-studies">
       <div className="max-w-7xl mx-auto space-y-12 md:space-y-16">
         {/* Header */}
         <motion.div
@@ -38,28 +34,28 @@ export default function Projects({ onSelectProject }: ProjectsProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="flex flex-col md:flex-row justify-between items-end gap-6 md:gap-8"
+          className="flex flex-col md:flex-row justify-between items-start gap-6 md:gap-8"
         >
           <div className="space-y-3 md:space-y-4">
             <h2 className="text-3xl sm:text-5xl md:text-6xl font-headline font-bold text-white tracking-tighter">
-              Selected <span className="text-primary">Works.</span>
+              Selected <span className="text-primary">Case Studies.</span>
             </h2>
             <p className="text-on-surface-variant text-sm md:text-base max-w-xl">
-              A collection of high-impact projects ranging from AI automation to enterprise infrastructure.
+              A collection of high-impact case studies spanning AI automation, enterprise systems, and backend architecture.
             </p>
           </div>
-          <div className="flex flex-col items-start md:items-end gap-3 shrink-0">
-            <motion.span
+          <div className="">
+            {/* <motion.span
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3 }}
               className="text-[10px] font-label font-bold uppercase tracking-[0.2em] text-on-surface-variant border border-outline-variant/30 px-3 py-1.5 rounded-full glass-chip"
             >
-              {projects.length} Projects
-            </motion.span>
+                {projects.length} Case Studies
+            </motion.span> */}
             <Link
-              href="/projects"
+              href="/case-studies"
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/30 bg-surface-container-high/60 text-sm font-bold text-primary hover:bg-primary/10 hover:border-primary/50 transition-all duration-300"
             >
               View All
@@ -73,46 +69,50 @@ export default function Projects({ onSelectProject }: ProjectsProps) {
           {projects.map((project, index) => {
             const accent = accentColors[index % accentColors.length];
             const sizeClass = bentoSizes[index] ?? "md:col-span-1 md:row-span-1";
+            const href = `/${project.sluggedUrl}`;
 
             return (
-              <motion.div
+              <Link
                 key={project.id}
-                initial={{ opacity: 0, y: 32, scale: 0.96 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{
-                  duration: 0.65,
-                  delay: index * 0.08,
-                  ease: [0.16, 1, 0.3, 1],
-                }}
-                whileHover={{ y: -4, transition: { duration: 0.3 } }}
-                onClick={() => onSelectProject(project)}
-                className={`${sizeClass} relative group cursor-pointer rounded-2xl overflow-hidden`}
-                style={{
-                  boxShadow: `0 0 0 1px ${accent.border}, 0 4px 40px ${accent.glow}`,
-                }}
+                href={href}
+                className={`${sizeClass} relative group cursor-pointer rounded-2xl overflow-hidden block`}
               >
-                {/* Background image */}
-                <div className="absolute inset-0">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    referrerPolicy="no-referrer"
-                  />
-                  {/* Dark overlay base */}
-                  <div className="absolute inset-0 bg-linear-to-t from-[#040c18]/95 via-[#040c18]/50 to-[#040c18]/20" />
-                  {/* Hover overlay */}
-                  <div
-                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                    style={{
-                      background: `linear-gradient(135deg, ${accent.glow}, transparent 60%), linear-gradient(to top, rgba(4,12,24,0.98) 20%, transparent 100%)`,
-                    }}
-                  />
-                </div>
+                <motion.div
+                  initial={{ opacity: 0, y: 32, scale: 0.96 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                  viewport={{ once: true, margin: "-60px" }}
+                  transition={{
+                    duration: 0.65,
+                    delay: index * 0.08,
+                    ease: [0.16, 1, 0.3, 1],
+                  }}
+                  whileHover={{ y: -4, transition: { duration: 0.3 } }}
+                  className="relative group h-full"
+                  style={{
+                    boxShadow: `0 0 0 1px ${accent.border}, 0 4px 40px ${accent.glow}`,
+                  }}
+                >
+                  {/* Background image */}
+                  <div className="absolute inset-0">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      referrerPolicy="no-referrer"
+                    />
+                    {/* Dark overlay base */}
+                    <div className="absolute inset-0 bg-linear-to-t from-[#040c18]/95 via-[#040c18]/50 to-[#040c18]/20" />
+                    {/* Hover overlay */}
+                    <div
+                      className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                      style={{
+                        background: `linear-gradient(135deg, ${accent.glow}, transparent 60%), linear-gradient(to top, rgba(4,12,24,0.98) 20%, transparent 100%)`,
+                      }}
+                    />
+                  </div>
 
-                {/* Content */}
-                <div className="absolute inset-0 flex flex-col justify-between p-5 md:p-6">
+                  {/* Content */}
+                  <div className="absolute inset-0 flex flex-col justify-between p-5 md:p-6">
                   {/* Top row: year + arrow */}
                   <div className="flex items-center justify-between">
                     <span className={`text-[9px] font-label font-bold uppercase tracking-[0.22em] ${accent.tag}`}>
@@ -128,7 +128,7 @@ export default function Projects({ onSelectProject }: ProjectsProps) {
 
                   {/* Bottom info */}
                   <div className="space-y-2">
-                    {/* Tech chips — only show on featured or on hover */}
+                    {/* Tech chips - only show on featured or on hover */}
                     <div
                       className={`flex flex-wrap gap-1.5 transition-all duration-400 opacity-100 translate-y-0`}
                     >
@@ -166,20 +166,21 @@ export default function Projects({ onSelectProject }: ProjectsProps) {
                     >
                       <ExternalLink className="w-3 h-3 text-primary" />
                       <span className="text-[9px] font-label font-bold uppercase tracking-widest text-primary">
-                        View Case Study
+                        Open Case Study
                       </span>
                     </div>
                   </div>
-                </div>
+                  </div>
 
-                {/* Shimmer border glow on hover */}
-                <div
-                  className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-                  style={{
-                    boxShadow: `inset 0 0 0 1px ${accent.border}`,
-                  }}
-                />
-              </motion.div>
+                  {/* Shimmer border glow on hover */}
+                  <div
+                    className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                    style={{
+                      boxShadow: `inset 0 0 0 1px ${accent.border}`,
+                    }}
+                  />
+                </motion.div>
+              </Link>
             );
           })}
         </div>

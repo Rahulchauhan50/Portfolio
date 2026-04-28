@@ -9,12 +9,9 @@ import Experience from "@/components/sections/Experience";
 import Projects from "@/components/sections/Projects";
 import Education from "@/components/sections/Education";
 import Contact from "@/components/sections/Contact";
-import ProjectModal from "@/components/ProjectModal";
-import { Project } from "@/lib/data";
 
 export default function HomePageClient() {
   const [isPageReady, setIsPageReady] = useState(false);
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   useEffect(() => {
     const preloaderSeen = sessionStorage.getItem("portfolio-preloader-seen") === "1";
@@ -41,12 +38,11 @@ export default function HomePageClient() {
           </div>
           <Skills />
           <Experience />
-          <Projects onSelectProject={setSelectedProject} />
+          <Projects />
           <Education />
           <Contact />
         </main>
       )}
-      {selectedProject && <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />}
     </>
   );
 }

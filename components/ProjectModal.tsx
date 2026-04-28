@@ -3,6 +3,8 @@
 import { motion } from "motion/react";
 import { X, ExternalLink } from "lucide-react";
 import { Project } from "@/lib/data";
+import Link from "next/link";
+
 
 interface ProjectModalProps {
   project: Project | null;
@@ -62,9 +64,17 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
               </div>
             </div>
             <div className="pt-4">
+              <Link href={project.sluggedUrl} target="_blank" rel="noopener noreferrer">
               <button className="btn-primary-gradient px-8 py-4 rounded-md font-bold text-on-primary-fixed hover:scale-[0.98] transition-transform flex items-center gap-2">
-                View Live Project <ExternalLink className="w-5 h-5" />
+                View Live Project 
+                <ExternalLink className="w-5 h-5" />
               </button>
+              </Link>
+
+              {/* <Link href={project.sluggedUrl} target="_blank" className="flex items-center gap-2">
+                View Live Project 
+                </Link> */}
+              
             </div>
           </div>
         </div>
