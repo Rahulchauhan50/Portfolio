@@ -9,6 +9,8 @@ export default function Hero() {
   const faceRef = useRef<HTMLDivElement>(null);
   const scaleWrapperRef = useRef<HTMLDivElement>(null);
   const imageContainerRef = useRef<HTMLDivElement>(null);
+  const pointerXRef = useRef(520);
+  const pointerInsideSectionRef = useRef(false);
 
   const designerImgRef = useRef<HTMLDivElement>(null);
   const coderImgRef = useRef<HTMLDivElement>(null);
@@ -100,6 +102,7 @@ export default function Hero() {
     let t1: number;
     let t2: number;
     let t3: number;
+    let loop: number;
 
     if (isDesktop) {
       designerImg.style.left = "-500px";
@@ -136,11 +139,11 @@ export default function Hero() {
         coderPanel.style.transition = "opacity 500ms cubic-bezier(0.19, 1, 0.22, 1)";
         designerPanel.style.opacity = "1";
         coderPanel.style.opacity = "1";
-      }, 1500);
+      }, 750);
 
       t3 = window.setTimeout(() => {
         introDoneRef.current = true;
-      }, 2000);
+      }, 1200);
     } else {
       imageContainer.style.opacity = "0";
       designerImg.style.opacity = "0";
@@ -168,88 +171,76 @@ export default function Hero() {
         coderPanel.style.transition = "opacity 500ms cubic-bezier(0.19, 1, 0.22, 1)";
         designerPanel.style.opacity = "1";
         coderPanel.style.opacity = "1";
-      }, 1000);
+      }, 450);
 
       t3 = window.setTimeout(() => {
         introDoneRef.current = true;
-      }, 1500);
+      }, 1000);
     }
+
+    const handlePointerMove = (event: PointerEvent) => {
+      const section = sectionRef.current;
+      if (!section) return;
+
+      const rect = section.getBoundingClientRect();
+      const x = event.clientX;
+      const y = event.clientY;
+
+      pointerInsideSectionRef.current =
+        x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom;
+
+      if (pointerInsideSectionRef.current) {
+        pointerXRef.current = x - rect.left;
+      }
+    };
+
+    const animate = () => {
+      if (isDesktop && introDoneRef.current) {
+        const section = sectionRef.current;
+        const face = faceRef.current;
+
+        if (section && face && pointerInsideSectionRef.current) {
+          const sectionRect = section.getBoundingClientRect();
+          const faceRect = face.getBoundingClientRect();
+          const xp = Math.max(0, Math.min(faceRect.width, pointerXRef.current - (faceRect.left - sectionRect.left)));
+
+          if (designerImgRef.current) {
+            designerImgRef.current.style.width = `${420 + (520 - xp) * 0.5}px`;
+            designerImgRef.current.style.left = `${100 + (520 - xp) * 0.1}px`;
+          }
+          if (coderImgRef.current) {
+            coderImgRef.current.style.width = `${420 + (xp - 520) * 0.5}px`;
+            coderImgRef.current.style.right = `${100 - (520 - xp) * 0.1}px`;
+          }
+          if (designerBgRef.current) {
+            designerBgRef.current.style.left = `${100 + (520 - xp) * 0.05}px`;
+            designerBgRef.current.style.opacity = `${(1040 - xp) / 520}`;
+          }
+          if (coderBgRef.current) {
+            coderBgRef.current.style.right = `${100 + (xp - 520) * 0.05}px`;
+            coderBgRef.current.style.opacity = `${xp / 520}`;
+          }
+          if (designerDescRef.current) {
+            designerDescRef.current.style.opacity = `${(1040 - xp) / 520}`;
+          }
+          if (coderDescRef.current) {
+            coderDescRef.current.style.opacity = `${xp / 520}`;
+          }
+        }
+      }
+
+      loop = window.requestAnimationFrame(animate);
+    };
+
+    window.addEventListener("pointermove", handlePointerMove);
+    loop = window.requestAnimationFrame(animate);
 
     return () => {
       window.clearTimeout(t1);
       window.clearTimeout(t2);
       window.clearTimeout(t3);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (window.innerWidth < 1140) return;
-
-    const section = sectionRef.current;
-    const face = faceRef.current;
-    if (!section || !face) return;
-
-    let mouseX = 0;
-    let relMouseX = 520;
-    let xp = 520;
-    let loop: number;
-    let isHovering = false;
-    let targetXp = 520;
-
-    const handleMouseMove = (e: MouseEvent) => {
-      mouseX = e.pageX;
-      const faceRect = face.getBoundingClientRect();
-      const faceLeft = faceRect.left + window.scrollX;
-      relMouseX = mouseX - faceLeft;
-    };
-
-    const animate = () => {
-      xp += ((isHovering ? relMouseX : targetXp) - xp) / 12;
-
-      if (designerImgRef.current) {
-        designerImgRef.current.style.width = `${420 + (520 - xp) * 0.5}px`;
-        designerImgRef.current.style.left = `${100 + (520 - xp) * 0.1}px`;
-      }
-      if (coderImgRef.current) {
-        coderImgRef.current.style.width = `${420 + (xp - 520) * 0.5}px`;
-        coderImgRef.current.style.right = `${100 - (520 - xp) * 0.1}px`;
-      }
-      if (designerBgRef.current) {
-        designerBgRef.current.style.left = `${100 + (520 - xp) * 0.05}px`;
-        designerBgRef.current.style.opacity = `${(1040 - xp) / 520}`;
-      }
-      if (coderBgRef.current) {
-        coderBgRef.current.style.right = `${100 + (xp - 520) * 0.05}px`;
-        coderBgRef.current.style.opacity = `${xp / 520}`;
-      }
-      if (designerDescRef.current) {
-        designerDescRef.current.style.opacity = `${(1040 - xp) / 520}`;
-      }
-      if (coderDescRef.current) {
-        coderDescRef.current.style.opacity = `${xp / 520}`;
-      }
-
-      loop = requestAnimationFrame(animate);
-    };
-
-    const handleMouseEnter = () => isHovering = true;
-    const handleMouseLeave = () => { isHovering = false; targetXp = 520; };
-
-    const setupDesktopFaceTracking = () => {
-      section.addEventListener("mouseenter", handleMouseEnter);
-      section.addEventListener("mousemove", handleMouseMove);
-      section.addEventListener("mouseleave", handleMouseLeave);
-      loop = requestAnimationFrame(animate);
-    };
-
-    const startDelay = window.setTimeout(setupDesktopFaceTracking, 2000);
-
-    return () => {
-      window.clearTimeout(startDelay);
-      section.removeEventListener("mouseenter", handleMouseEnter);
-      section.removeEventListener("mousemove", handleMouseMove);
-      section.removeEventListener("mouseleave", handleMouseLeave);
-      cancelAnimationFrame(loop);
+      window.removeEventListener("pointermove", handlePointerMove);
+      window.cancelAnimationFrame(loop);
     };
   }, []);
 
