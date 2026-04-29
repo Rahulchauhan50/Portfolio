@@ -96,7 +96,7 @@ export default function EmailTriageCaseStudyPage() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="flex-1 w-full aspect-square md:aspect-[4/3] rounded-3xl border border-outline-variant/20 bg-surface-container-high/50 shadow-[0_0_80px_rgba(123,241,200,0.05)] relative overflow-hidden group"
+            className="flex-1 w-full aspect-square md:aspect-4/3 rounded-3xl border border-outline-variant/20 bg-surface-container-high/50 shadow-[0_0_80px_rgba(123,241,200,0.05)] relative overflow-hidden group"
           >
             <div className="absolute inset-0 flex flex-col items-center justify-center bg-[#040c18]/40 backdrop-blur-sm z-10 p-8 text-center space-y-4">
               <Bot className="w-12 h-12 text-tertiary animate-pulse" />
@@ -170,7 +170,7 @@ export default function EmailTriageCaseStudyPage() {
                   className="relative md:pl-20"
                 >
                   {/* Timeline Dot */}
-                  <div className="hidden md:flex absolute left-[15px] top-1 w-5 h-5 rounded-full bg-surface border-4 border-surface-container-high items-center justify-center ring-1 ring-outline-variant/30 z-10" />
+                  <div className="hidden md:flex absolute left-3.75 top-1 w-5 h-5 rounded-full bg-surface border-4 border-surface-container-high items-center justify-center ring-1 ring-outline-variant/30 z-10" />
                   
                   <div className="bg-surface-container-high/40 border border-outline-variant/20 rounded-2xl p-6 md:p-8 hover:bg-surface-container-high/60 transition-colors">
                     <div className="flex items-center gap-4 mb-4">
