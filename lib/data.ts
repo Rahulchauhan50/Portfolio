@@ -29,7 +29,7 @@ export const projects: Project[] = [
     longDesc: "This project leverages Large Language Models (LLMs) to automate the tedious process of email management. It uses Node.js microservices to fetch emails, OpenAI's API for classification and summarization, and Prisma for persistent storage. The system significantly reduces response times and ensures critical emails are never missed. It features a dashboard for monitoring triage accuracy and manual overrides.",
     tech: ["Next.js", "OpenAI", "Prisma", "Node.js", "Tailwind CSS"],
     image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCKoHI1m5CyF6c07mapTNS6TF6kuFgPC-SswdHydDbjHeFmpqRJB7uG6qvUDXDULMWPxhHqcn-gZmDUl7AAXZSDmU7Fznmcy2W4yQdFxlMaDjSfk2EugAPZFvcRkHGWsB3UmGxR0g-dQUGtMdCh0fPzdLA6lrIv0Xj8JqQInaipl2dX_5y4HAAVAMyfjpcXD7oeRCRpxryPIDYaU6sDGQNZRu2E7bw209M6oXdVlDWs5h5GcygzoKfIrL4QtAEqWuGQCYZAhzpnphg",
-    sluggedUrl: "case-studies"
+    sluggedUrl: "case-studies/email-triage"
 
   },
   {

@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   },
 };
 
-const featuredCaseStudyIds = new Set([2, 3]);
+const featuredCaseStudyIds = new Set([1, 2, 3]);
 
 export default function CaseStudiesPage() {
   const caseStudies = projects.filter((project) => featuredCaseStudyIds.has(project.id));
