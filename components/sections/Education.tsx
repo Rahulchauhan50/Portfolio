@@ -61,7 +61,7 @@ export default function Education() {
           </motion.div>
 
           {/* 12th */}
-          <motion.div
+          {/* <motion.div
             whileInView={{ opacity: 1, x: 0 }}
             initial={{ opacity: 0, x: 20 }}
             viewport={{ once: true }}
@@ -83,10 +83,10 @@ export default function Education() {
               </div>
               <span className="text-[10px] md:text-xs font-label uppercase tracking-widest text-on-surface-variant glass px-3 py-1 rounded-full h-fit w-fit whitespace-nowrap">Apr 2020 - Mar 2021</span>
             </div>
-          </motion.div>
+          </motion.div> */}
 
           {/* 10th */}
-          <motion.div
+          {/* <motion.div
             whileInView={{ opacity: 1, x: 0 }}
             initial={{ opacity: 0, x: 20 }}
             viewport={{ once: true }}
@@ -108,7 +108,7 @@ export default function Education() {
               </div>
               <span className="text-[10px] md:text-xs font-label uppercase tracking-widest text-on-surface-variant glass px-3 py-1 rounded-full h-fit w-fit whitespace-nowrap">Apr 2018 - Mar 2019</span>
             </div>
-          </motion.div>
+          </motion.div> */}
         </div>
       </div>
     </section>

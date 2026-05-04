@@ -11,7 +11,9 @@ import {
   Map, 
   CreditCard,
   MountainSnow,
-  Database
+  Database,
+  Monitor,
+  Smartphone
 } from "lucide-react";
 
 const techStack = [
@@ -204,6 +206,97 @@ export default function FleetBackendCaseStudyPage() {
               />
             </motion.div>
          </div>
+      </section>
+
+      {/* Platform Snapshots */}
+      <section className="px-6 md:px-24 py-12 md:py-16 min-h-[100svh] flex items-center justify-center relative overflow-hidden">
+        {/* Background glow for aesthetics */}
+        <div className="absolute inset-0 pointer-events-none">
+           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/10 blur-[100px] rounded-full" />
+        </div>
+        
+        <div className="w-full max-w-7xl mx-auto relative z-10 flex flex-col md:gap-12 gap-8">
+          <div className="text-center space-y-4 max-w-3xl mx-auto shrink-0">
+            <span className="inline-block text-[10px] font-label font-bold uppercase tracking-[0.2em] text-primary border border-primary/30 px-4 py-1.5 rounded-full bg-primary/10 backdrop-blur-sm">
+              Platform Interface
+            </span>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-headline font-bold text-white tracking-tight leading-tight">
+              A look into the <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">system.</span>
+            </h2>
+            <p className="text-on-surface-variant text-base md:text-lg">
+              Showcasing the passenger experience and the robust administrative dashboard built to manage scheduled fleets and dynamic pricing.
+            </p>
+          </div>
+
+          <div className="relative w-full max-w-4xl mx-auto pb-12 md:pb-20 flex justify-center shrink-0">
+            
+            {/* Desktop Mockup (Background) */}
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="w-[90%] md:w-[85%] rounded-xl md:rounded-2xl border border-white/10 bg-surface-container shadow-[0_20px_80px_rgba(0,0,0,0.5)] relative z-10 md:mr-auto overflow-hidden group"
+            >
+              {/* Browser Header */}
+              <div className="h-8 md:h-10 bg-white/5 border-b border-white/10 flex items-center px-3 md:px-4 gap-4 backdrop-blur-md">
+                <div className="flex gap-1.5 shrink-0">
+                  <div className="w-2.5 h-2.5 rounded-full bg-[#FF5F56] shadow-sm" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E] shadow-sm" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-[#27C93F] shadow-sm" />
+                </div>
+                <div className="mx-auto w-full max-w-[250px] bg-black/20 border border-white/5 rounded-md px-4 py-1 text-[9px] md:text-xs text-on-surface-variant/70 flex items-center justify-center gap-2 shadow-inner">
+                  <Monitor className="w-3 h-3 opacity-50" />
+                  admin.parvatiyavahan.com
+                </div>
+              </div>
+              {/* Image Area */}
+              <div className="aspect-[16/10] bg-surface-container-high relative flex items-center justify-center overflow-hidden">
+                 <div className="absolute inset-0 bg-gradient-to-br from-[#040c18] to-surface-container-high z-0" />
+                 <div className="absolute inset-0 opacity-20 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-white/10 via-transparent to-transparent" />
+                 
+                 <div className="z-10 text-center space-y-2 opacity-60 group-hover:scale-110 group-hover:opacity-100 transition-all duration-500">
+                    <Database className="w-8 h-8 md:w-10 md:h-10 mx-auto text-primary" />
+                    <p className="text-xs md:text-sm font-label uppercase tracking-widest text-on-surface-variant">Admin Dashboard</p>
+                 </div>
+                 <img 
+                   src="/path-to-desktop-screenshot.jpg" 
+                   alt="Admin Dashboard" 
+                   className="absolute inset-0 w-full h-full object-cover opacity-10 group-hover:opacity-80 transition-opacity duration-700"
+                 />
+              </div>
+            </motion.div>
+
+            {/* Mobile Mockup (Foreground) */}
+            <motion.div
+              initial={{ opacity: 0, x: 40, y: 40 }}
+              whileInView={{ opacity: 1, x: 0, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+              className="absolute right-0 md:right-4 bottom-0 w-[120px] md:w-[220px] aspect-[9/19] rounded-[1.5rem] md:rounded-[2rem] border-[4px] md:border-[6px] border-surface-container-highest bg-[#020617] shadow-[0_30px_100px_rgba(0,0,0,0.8)] z-20 overflow-hidden group"
+            >
+              {/* Notch */}
+              <div className="absolute top-0 inset-x-0 h-4 md:h-5 bg-surface-container-highest rounded-b-xl w-1/2 mx-auto z-20 flex justify-center items-end pb-1 md:pb-1.5">
+                <div className="w-8 h-1 md:w-10 md:h-1 rounded-full bg-white/10" />
+              </div>
+              
+              {/* Image Area */}
+              <div className="w-full h-full relative flex items-center justify-center pt-6">
+                 <div className="absolute inset-0 bg-gradient-to-b from-secondary/10 to-[#020617] z-0" />
+                 <div className="z-10 text-center space-y-1.5 opacity-60 group-hover:scale-110 group-hover:opacity-100 transition-all duration-500">
+                    <Smartphone className="w-5 h-5 md:w-7 md:h-7 mx-auto text-secondary" />
+                    <p className="text-[8px] md:text-[10px] font-label uppercase tracking-widest text-on-surface-variant">App View</p>
+                 </div>
+                 <img 
+                   src="/path-to-mobile-screenshot.jpg" 
+                   alt="Passenger App" 
+                   className="absolute inset-0 w-full h-full object-cover opacity-10 group-hover:opacity-80 transition-opacity duration-700"
+                 />
+              </div>
+            </motion.div>
+
+          </div>
+        </div>
       </section>
 
       {/* Features Grid */}
