@@ -5,6 +5,7 @@ import { GraduationCap, Scroll, BookOpen } from "lucide-react";
 
 export default function Education() {
   return (
+    // section with a headline on the left and a list of education items on the right, each item has an icon, title, institution, description and date range
     <section className="py-24 md:py-32 px-6 md:px-24 relative" id="education">
       <div className="max-w-7xl mx-auto grid lg:grid-cols-3 gap-12 md:gap-16">
         <div className="lg:col-span-1">
